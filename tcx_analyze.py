@@ -19,8 +19,8 @@ from sklearn.model_selection import train_test_split
 from scipy.optimize import curve_fit
 
 
-POINTS_CSV_FILENAME = "intermediate_csvs/trackpoints.csv"
-INTERVALS_CSV_FILENAME = "intermediate_csvs/intervals.csv"
+POINTS_CSV_FILENAME = "trackpoints.csv"
+INTERVALS_CSV_FILENAME = "intervals.csv"
 
 PNT_COLUMNS = ['time', 'altitude', 'distance', 'heartrate']
 AUCKLAND_TIME = pytz.timezone('Pacific/Auckland')
@@ -268,6 +268,7 @@ def animate_intervals():
             fig = px.scatter(af, x='time', y='heartrate', trendline="ols")
             fig.update_traces(marker=marker_dict, selector=dict(mode='markers'))
             fig.update_traces(marker={'color': '#a92415', 'line_width': 2}, selector=dict(mode='lines'))
+            fig.update_layout(title='Heart rate over a 30 day cycling tour (3-5% grade at 8-12 km/hr)')
             fig['layout']['yaxis'].update(range=[100, 200], autorange=False)
         start_range = max(START_DATETIME, START_DATETIME + timedelta(hours=hour-days_visible*24))
         end_range = max(START_DATETIME + timedelta(hours=hour), START_DATETIME + timedelta(hours=24*days_visible))
