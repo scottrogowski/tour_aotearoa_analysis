@@ -307,24 +307,24 @@ def analyze_intervals():
     fig.update_traces(marker=marker_dict, selector=dict(mode='markers'))
     fig.update_traces(marker={'color': '#a92415', 'line_width': 2}, selector=dict(mode='lines'))
     fig.update_layout(title='Speed vs. heartrate')
-    fig.write_image('static/speed_vs_heartrate.png')
+    fig.write_image('rendered/speed_vs_heartrate.png')
 
     fig = px.scatter(df, x='grade', y='heartrate', trendline="ols")
     fig.update_traces(marker=marker_dict, selector=dict(mode='markers'))
     fig.update_traces(marker={'color': '#a92415', 'line_width': 2}, selector=dict(mode='lines'))
     fig.update_layout(title='Grade vs. heartrate', xaxis_tickformat = '%')
-    fig.write_image('static/grade_vs_heartrate.png')
+    fig.write_image('rendered/grade_vs_heartrate.png')
 
     fig = px.scatter(df, x='horiz_speed', y='grade')
     fig.update_traces(marker=marker_dict, selector=dict(mode='markers'))
     fig.update_traces(marker={'color': '#a92415', 'line_width': 2}, selector=dict(mode='lines'))
     fig.update_layout(title='Speed vs. grade', yaxis_tickformat = '%')
-    fig.write_image('static/speed_vs_grade.png')
+    fig.write_image('rendered/speed_vs_grade.png')
 
     fig = px.scatter(df, x='horiz_speed', y='grade', color='heartrate')
     fig.update_traces(marker={'color': '#a92415', 'line_width': 2}, selector=dict(mode='lines'))
     fig.update_layout(title='Heart rate by speed and grade', yaxis_tickformat = '%')
-    fig.write_image('static/speed_vs_grade_w_heartrate.png')
+    fig.write_image('rendered/speed_vs_grade_w_heartrate.png')
 
     X_all = df[['horiz_speed', 'grade', 'day']]
     y_all = df['heartrate']

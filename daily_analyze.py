@@ -119,18 +119,18 @@ def displayData(dataByType):
     fig = px.bar(df, x='Day', y='Distance', labels={'Distance':'Distance (km)'})
     fig.update_layout(title='Distance')
     fig.update_traces(marker={'color': '#156fa9', 'line_width': 2})
-    fig.write_image('static/daily_distance.png')
+    fig.write_image('rendered/daily_distance.png')
 
     fig = px.bar(df, x='Day', y='Elev Gain', labels={'Elev Gain':'Elevation gain (meters)'})
     fig.update_layout(title='Elevation gain')
     fig.update_traces(marker={'color': '#156fa9', 'line_width': 2})
-    fig.write_image('static/daily_elevation.png')
+    fig.write_image('rendered/daily_elevation.png')
 
     df = df[df['Avg HR'] > 100]
     fig = px.scatter(df, x='Day', y='Avg HR', trendline="ols", labels={'Avg HR':'Average heart rate (bpm)'})
     fig.update_layout(title='Average heart rate')
     fig.update_traces(marker={'color': '#156fa9', 'line_width': 2, 'size': 20})
-    fig.write_image('static/daily_heartrate.png')
+    fig.write_image('rendered/daily_heartrate.png')
 
 
 if __name__ == "__main__":
