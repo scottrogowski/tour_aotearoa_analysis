@@ -7,7 +7,6 @@ import io
 import os
 
 import numpy as np
-import matplotlib
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -28,8 +27,6 @@ START_DATETIME = datetime(2020, 2, 21, 11, 0, 0)
 START_DATETIME = START_DATETIME.replace(tzinfo=AUCKLAND_TIME)
 
 _Pnt = namedtuple('Pnt', PNT_COLUMNS)
-
-matplotlib.rcParams['font.family'] = 'Open Sans'
 
 
 class HeartRateException(Exception):
@@ -325,6 +322,8 @@ def analyze_intervals():
     fig.update_traces(marker={'color': '#a92415', 'line_width': 2}, selector=dict(mode='lines'))
     fig.update_layout(title='Heart rate by speed and grade', yaxis_tickformat = '%')
     fig.write_image('rendered/speed_vs_grade_w_heartrate.png')
+
+    df = df[df['day'] > 3]  # first 3 days were on bad tires
 
     X_all = df[['horiz_speed', 'grade', 'day']]
     y_all = df['heartrate']
