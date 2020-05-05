@@ -66,6 +66,10 @@ def solidInt(inp):
         return 0
     return int(inp.replace(',', ''))
 
+def miToKm(inp):
+    return float(inp) * 1000 / 62.1371
+
+
 
 keyFuncs = {
     'Time': timeToSecs,
@@ -116,11 +120,13 @@ def displayData(dataByType):
     df = pd.DataFrame.from_dict(dataByType)
     df = df.groupby(['Date', 'Day'], as_index=False).agg({'Distance': 'sum', 'Elev Gain': 'sum', "Avg HR": "mean"})
 
+    df.Distance = df.Distance / .621371
     fig = px.bar(df, x='Day', y='Distance', labels={'Distance':'Distance (km)'})
     fig.update_layout(title='Distance')
     fig.update_traces(marker={'color': '#156fa9', 'line_width': 2})
     fig.write_image('rendered/daily_distance.png')
 
+    df['Elev Gain'] = df['Elev Gain'] * .3048
     fig = px.bar(df, x='Day', y='Elev Gain', labels={'Elev Gain':'Elevation gain (meters)'})
     fig.update_layout(title='Elevation gain')
     fig.update_traces(marker={'color': '#156fa9', 'line_width': 2})
